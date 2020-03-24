@@ -4,6 +4,7 @@
     margin: 50px;
 }
 
+/*les boutons ont tous la class btn qui permet de leur donner un style générique*/
 .btn{
     padding: 10px 20px;
     color: white;
@@ -18,6 +19,7 @@
     cursor: pointer;
 }
 
+/*on change ensuite la couleur de chaque boutons avec une class spécifique a chacun*/
 .btn_red {
     background-color: red;
 }
@@ -30,44 +32,57 @@
     background-color: blue;
 }
 
+/*La class qui sera ajouté a notre premier bouton lors d'un click*/
 .break {
-    animation: break 2s;
+    animation: break 2s; /*animation va jouer... ben l'animation qu'on aura créé avec @keyframes et qu'on lui aura passé en parametre, elle peut se contenter du nom de l'animation et de la durée
+    mais peut aussi prendre d'autres parametre : https://developer.mozilla.org/fr/docs/Web/CSS/animation*/
 }
 
-@keyframes break {
+/*@keyframes permet de définir les etapes d'une animation, comme ici a chaque pourcentage de la durée, on peut aussi faire from...to*/
+@keyframes break { /*on l'appelle et lui donne un nom*/
+    /*et ensuite, pour chaque pourcentages désirés, on va définir des styles*/
     0% {
-        transform-origin: top left;
+        transform-origin: top right; /*transform-origine définit quel point prendre comme origine de la tranformation*/
+        animation-timing-function: ease-in-out; /*animation-timing-function va permettre de choisir la courbe de l'animation: https://www.w3schools.com/cssref/css3_pr_animation-timing-function.asp*/
+    }
+
+    20%{
+        transform: rotateZ(-80deg); /*transform rotateZ effecture une rotation sur l'axe de la profondeur*/
+        transform-origin: top right;
         animation-timing-function: ease-in-out;
     }
 
-    20%,
     60% {
-        transform: rotate3d(0, 0, 1, 80deg);
-        transform-origin: top left;
+        transform: rotateZ(-80deg);
+        transform-origin: top right;
         animation-timing-function: ease-in-out;
     }
 
-    40%,
-    80% {
-        transform: rotate3d(0, 0, 1, 60deg);
-        transform-origin: top left;
+    40%, 80% { /*ici vous voyez que si 2 étapes sont identiques, on peut leur donner le même style en les appelant avec une virgule*/
+        transform: rotateZ(-60deg);
+        transform-origin: top right;
         animation-timing-function: ease-in-out;
-        opacity: 1;
+        opacity: 1; /*opacity défini... ben l'opacité en fait...^^*/
     }
 
     100% {
-        transform: translate3d(0, 700px, 0);
+        transform: translateY(700px); /*et transform translateY va effectué un déplacement sur l'axe vertical*/
         opacity: 0;
     }
 }
 
-.btn_transform {
-    transition: transform 2s, background-color 1s 1s;
-    transition-timing-function: ease-in;
+/*la class btn_transition va juste servie a définir la transition, j'aurais pus le mettre directement dans la class btn_purple, mais j'ai voulu détaillé le plus possible
+ puis c'est une bonne pratique de ne pas trop en mettre dans une seule class, imaginons que je veuille un autre bouton violet mais avec une transition différente par exemple...*/
+.btn_transition {
+    transition: transform 2s, background-color 1s 1s; /*transition est comme animation, sauf qu'au lieu de prendre le nom d'une animation en parametre, elle va prendre le nom d'un attribut, comme vous pouvez voir
+    on peut en mettre plusieurs séparés par des virgules. a background-color, vous voyez 2 fois 1s, en fait j'ai définit un delay d'une seconde et une durée d'une seconde, transition va donc attendre 1s avant de changer
+    mon background-color*/
+    transition-timing-function: ease-in; /*idem à animation-timing-function*/
 }
 
-.btn_transform_active {
-    transform: rotateZ(360deg) scale(1.5);
-    background-color: darkorange;
+/*et enfin dans ma class btn_transition_active (celle que je vais demander à JS de rajouter) je définis les styles que je veux voir changer*/
+.btn_transition_active {
+    transform: rotateZ(360deg) scale(1.5); /*dans mon transform je fait tourner mon bouton de 360° sur l'axe de la profondeur et je le grossis de 1.5 (de 50% donc)*/
+    background-color: darkorange; /*et je lui met un background-color orange*/
 
 }

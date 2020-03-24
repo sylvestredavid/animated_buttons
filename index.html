@@ -7,8 +7,10 @@
 </head>
 <body>
     <div class="flex">
+        <!-- rien de particulier dans le html, si ce n'est le onClick des boutons, qui va permettre d'appeler une fonction
+        de notre fichier javascript lorsqu'on clique sur un bouton, le this signifie cet element -->
         <button class="btn btn_red" onclick="addAnimation(this, 'break')">keyframe</button>
-        <button class="btn btn_purple btn_transform" onclick="addAnimation(this, 'btn_transform_active')">transition</button>
+        <button class="btn btn_purple btn_transition" onclick="addAnimation(this, 'btn_transition_active')">transition</button>
         <button class="btn btn_blue" onclick="anim(this)">javascript</button>
     </div>
     <script type="text/javascript" src="script.js"></script>
